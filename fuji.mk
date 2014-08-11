@@ -60,6 +60,7 @@ PRODUCT_PACKAGES += \
     copybit.msm8660 \
     gralloc.msm8660 \
     hwcomposer.msm8660 \
+    memtrack.msm8660 \
     libgenlock \
     libmemalloc \
     liboverlay \
@@ -110,6 +111,10 @@ PRODUCT_PACKAGES += \
     libaudio-resampler \
     libaudioutils
     #audio_policy.conf
+
+# Camera wrapper
+#PRODUCT_PACKAGES += \
+#    camera.fuji
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -210,10 +215,6 @@ PRODUCT_COPY_FILES += \
     device/sony/fuji-common/rootdir/system/etc/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
     device/sony/fuji-common/rootdir/system/etc/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 
-# Set default USB interface
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp,adb
-
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril_class=SonyQualcommRIL \
@@ -235,6 +236,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.gprsclass=10 \
     ro.use_data_netmgrd=true \
     ro.ril.transmitpower=true
+
+# USB Debugging
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.secure=0 \
+    ro.debuggable=1 \
+    persist.service.adb.enable=1 \
+    persist.sys.usb.config=mtp,adb
 
 #### Goo Manager support
 PRODUCT_PROPERTY_OVERRIDES += \
